@@ -253,7 +253,10 @@ public class AdminHome extends javax.swing.JApplet
 
     private void addCourseButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addCourseButton2ActionPerformed
     {//GEN-HEADEREND:event_addCourseButton2ActionPerformed
-        // TODO add your handling code here:
+        System.out.println("Error");
+//        getContentPane().removeAll();
+//        getContentPane().repaint();
+        new ErrorLogInterface().setVisible(true);
     }//GEN-LAST:event_addCourseButton2ActionPerformed
 
     private void addCourseButton3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addCourseButton3ActionPerformed
