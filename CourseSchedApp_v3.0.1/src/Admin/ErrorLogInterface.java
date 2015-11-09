@@ -9,29 +9,33 @@ import java.io.*;
 import java.util.*;
 import java.awt.Point;
 import javax.swing.*;
+import javax.swing.JTable;
 /**
  *
  * @author Justin
  */
-public class ErrorLogInterface extends javax.swing.JFrame {
+public class ErrorLogInterface extends JFrame {
 
     /**
      * Creates new form ErrorLogInterface
      */
     public ErrorLogInterface() {
         initComponents();
-        getErrorData(20);
-        boolean ErrorLogInterfaceLoop = true;
-        //ErrorLogInterfaceLoop will run indefinitly until user does something to leave the page
-       
+        
+        //initialize status selection categories
+        errorLogStatus.addItem("New");
+        errorLogStatus.addItem("Updated");
+        errorLogStatus.addItem("Reviewing");
+        errorLogStatus.addItem("Solved");
+        
+        //populate gui field with info from the database
+        getErrorData(20);   
     }
 
     private void getErrorData(int max_rows){
-        final int PANEL_HEIGHT = 100;
-        final int PANEL_WIDTH = 800;
-       
         //TODO replace with real database info
         Scanner testIn = null;
+        
         try{
             File testfile = new File("errorTest.txt");
             testIn = new Scanner(testfile);
@@ -49,10 +53,13 @@ public class ErrorLogInterface extends javax.swing.JFrame {
         while(testIn.hasNext()){
             //store data
             String testLine[] = testIn.nextLine().split(",");
+            //populate the row with error data
             tableData[rows][0] = testLine[0];
             tableData[rows][1] = testLine[1];
             tableData[rows][2] = testLine[2];
-            tableData[rows][3] = errorLogStatus;
+            tableData[rows][3] = "New";
+            //set a status combobox in every row
+            
             rows++;
         }
         
@@ -81,11 +88,9 @@ public class ErrorLogInterface extends javax.swing.JFrame {
         //add Component to GUI
         ErrorLog_ScrollPanel.setViewportView(ErrorLog);
         
-        
-        
-        
-        
-        
+        //set a 
+        errorLogStatus.setSelectedIndex(2);
+        ErrorLog.getColumnModel().getColumn(3).setCellEditor(new DefaultCellEditor(errorLogStatus));
         
     }
     
@@ -162,7 +167,7 @@ public class ErrorLogInterface extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -212,8 +217,8 @@ public class ErrorLogInterface extends javax.swing.JFrame {
     }
 
     private javax.swing.JTable ErrorLog;
-    private String errorLogStatusChoices[] = {"New", "Invalid", "Solved", "Reviewing"};
-    private JComboBox errorLogStatus = new JComboBox(errorLogStatusChoices);
+    private JComboBox errorLogStatus = new JComboBox();
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane ErrorLog_ScrollPanel;
     private javax.swing.JToggleButton ErrorLog_SubmitButton;
