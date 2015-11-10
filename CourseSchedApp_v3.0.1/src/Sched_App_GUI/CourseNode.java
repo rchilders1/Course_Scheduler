@@ -57,10 +57,9 @@ public class CourseNode extends CourseNodeManager {
         if(dragging == true)
         {
             createMiniCourseNode();
-            return location;
         }
         else
-            return null;
+            return location;
     }
     
     public Dimension getLocation()
