@@ -1,3 +1,5 @@
+package Sched_App_GUI;
+
 import javax.swing.JApplet;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -27,9 +29,8 @@ public class CourseSchedulerMain extends JApplet {
         this.mainPanel.repaint();
         
         int nextViewID = viewID;
-        
         if(viewID == 2){
-			Admin.ErrorLogInterface eli = new Admin.ErrorLogInterface();
+			Admin.ErrorLogInterface eli = new Admin.ErrorLogInterface(this);
 			eli.initComponents(this.mainPanel);
 			/*
 			while(true){
@@ -47,13 +48,17 @@ public class CourseSchedulerMain extends JApplet {
 
 	}
 	
+	public JPanel getMainPanel(){
+		return mainPanel;
+	}
+	
 	public void switchView(int nextViewID){
 		setView(nextViewID);
 	}
 	
 	public CourseSchedulerMain() {
 		
-		mainPanel = new JPanel();
+		this.mainPanel = new JPanel();
 		getContentPane().add(mainPanel, BorderLayout.CENTER);
 		getContentPane().setSize(1000,800);
 		getContentPane().setVisible(true);
