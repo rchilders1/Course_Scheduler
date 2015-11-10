@@ -14,22 +14,19 @@ import java.awt.event.*;
  *
  * @author Justin
  */
-public class ErrorLogInterface extends JFrame {
+public class ErrorLogInterface{
 
+	private boolean running = true;
+	private int nextViewID = 2;
     /**
      * Creates new form ErrorLogInterface
      */
     public ErrorLogInterface() {
-        initComponents();
-        
-        //initialize status selection categories
-        errorLogStatus.addItem("New");
-        errorLogStatus.addItem("Updated");
-        errorLogStatus.addItem("Reviewing");
-        errorLogStatus.addItem("Solved");
+
+
         
         //populate gui field with info from the database
-        getErrorData(20);   
+        
     }
     
     private void createTable(){
@@ -38,7 +35,7 @@ public class ErrorLogInterface extends JFrame {
         
         //TODO database connection here
         try{
-            File testfile = new File("errorTest.txt");
+            File testfile = new File("C:\\Users\\Justin\\Desktop\\Course Scheduler\\Course_Scheduler\\CourseSchedApp_v3.0.1\\errorTest.txt");
             testIn = new Scanner(testfile);
         }
         catch(FileNotFoundException e){
@@ -97,12 +94,13 @@ public class ErrorLogInterface extends JFrame {
         
         //setRowHeight
         ErrorLog.setRowHeight(50);
+        mainPanel.add(ErrorLog);
     }
     
     private void getErrorData(int max_rows){
         createTable();
         //add Component to GUI
-        ErrorLog_ScrollPanel.setViewportView(ErrorLog);
+        //ErrorLog_ScrollPanel.setViewportView(ErrorLog);
         
         //set each row's editor to the ErrorLogStatus ComboBox
         ErrorLog.getColumnModel().getColumn(3).setCellEditor(new DefaultCellEditor(errorLogStatus));
@@ -140,14 +138,12 @@ public class ErrorLogInterface extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
-    private void initComponents() {
+    public void initComponents(JPanel mainPanel) {
+    	/*
         jPanel1 = new JPanel();
         ErrorLog_Title = new JLabel();
         ErrorLog_ScrollPanel = new JScrollPane();
         ScrollContainer_Panel = new JPanel();
-        
-        //set close operation
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         
         //create submit button with action listener
         ErrorLog_SubmitButton = new javax.swing.JToggleButton();
@@ -178,7 +174,10 @@ public class ErrorLogInterface extends JFrame {
             ScrollContainer_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 375, Short.MAX_VALUE)
         );
-
+        
+        //add everything to mainPanel in main applet
+        this.mainPanel.add(ScrollContainer_Panel);
+        
         //add scroll panel to the JPanel
         ErrorLog_ScrollPanel.setViewportView(ScrollContainer_Panel);
 
@@ -212,8 +211,8 @@ public class ErrorLogInterface extends JFrame {
                 .addContainerGap(154, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(mainPanel);
+        mainPanel.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -227,21 +226,29 @@ public class ErrorLogInterface extends JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86))
         );
+*/
+        //initialize status selection categories
+        errorLogStatus.addItem("New");
+        errorLogStatus.addItem("Updated");
+        errorLogStatus.addItem("Reviewing");
+        errorLogStatus.addItem("Solved");
 
-        pack();
+        this.mainPanel = mainPanel;
+    	getErrorData(20); 
+    	mainPanel.repaint();
+        
     }          
              
-    //Procedurally Generated Run Method 
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ErrorLogInterface().setVisible(true);
-            }
-        });
-    }
 
+    public int checkCurrentViewID() {
+    	return nextViewID;
+    }
+    
+    private JButton returnButton = new JButton("Return");
+    private JPanel mainPanel;
     private javax.swing.JTable ErrorLog;
     private JComboBox errorLogStatus = new JComboBox();
+    /* 
        // Variables declaration - do not modify                     
     private javax.swing.JScrollPane ErrorLog_ScrollPanel;
     private javax.swing.JToggleButton ErrorLog_SubmitButton;
@@ -249,7 +256,7 @@ public class ErrorLogInterface extends JFrame {
     private javax.swing.JPanel ScrollContainer_Panel;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration    
-  /*  
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
