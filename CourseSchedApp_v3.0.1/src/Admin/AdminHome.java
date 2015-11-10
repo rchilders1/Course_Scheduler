@@ -238,19 +238,23 @@ public class AdminHome extends javax.swing.JApplet
 
     private void addCourseButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addCourseButtonActionPerformed
     {//GEN-HEADEREND:event_addCourseButtonActionPerformed
-        //AddCourse c = new AddCourse();
-       System.out.print("Button Pressed");
+        AddCourse c = new AddCourse();
+        String[] params = new String[4];
+        c.main(params);
+      
        
     }//GEN-LAST:event_addCourseButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_updateButtonActionPerformed
     {//GEN-HEADEREND:event_updateButtonActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void addCourseButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addCourseButton1ActionPerformed
     {//GEN-HEADEREND:event_addCourseButton1ActionPerformed
-        // TODO add your handling code here:
+        Update_Remove u = new Update_Remove();
+        String[] params = new String[4];
+        u.main(params);System.out.println("update button pressed");
     }//GEN-LAST:event_addCourseButton1ActionPerformed
 
     private void addCourseButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addCourseButton2ActionPerformed
