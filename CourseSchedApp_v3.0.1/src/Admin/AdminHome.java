@@ -70,6 +70,12 @@ public class AdminHome extends javax.swing.JApplet
                     
                     //Set the various labels for the different buttons
                     homeButton.setLabel("Home");
+                    ErrorInfoField.setEditable(false);
+                    
+                    if(true)
+                        ErrorInfoField.setText("There are errors.");
+                    else
+                        ErrorInfoField.setText("There are no errors.");
                 
                 }
             });
@@ -254,25 +260,28 @@ public class AdminHome extends javax.swing.JApplet
     {//GEN-HEADEREND:event_addCourseButton1ActionPerformed
         Update_Remove u = new Update_Remove();
         String[] params = new String[4];
-        u.main(params);System.out.println("update button pressed");
+        u.main(params);
     }//GEN-LAST:event_addCourseButton1ActionPerformed
 
     private void addCourseButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addCourseButton2ActionPerformed
     {//GEN-HEADEREND:event_addCourseButton2ActionPerformed
-        System.out.println("Error");
+        ErrorLogInterface e = new ErrorLogInterface();
+        e.initComponents(null);
+        
 //        getContentPane().removeAll();
 //        getContentPane().repaint();
-        new ErrorLogInterface().setVisible(true);
+        
     }//GEN-LAST:event_addCourseButton2ActionPerformed
 
     private void addCourseButton3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addCourseButton3ActionPerformed
     {//GEN-HEADEREND:event_addCourseButton3ActionPerformed
-        // TODO add your handling code here:
+        //This is the sign out button
+        
     }//GEN-LAST:event_addCourseButton3ActionPerformed
 
     private void ErrorInfoFieldInputMethodTextChanged(java.awt.event.InputMethodEvent evt)//GEN-FIRST:event_ErrorInfoFieldInputMethodTextChanged
     {//GEN-HEADEREND:event_ErrorInfoFieldInputMethodTextChanged
-       ErrorInfoField.setText("This will display whether there are errors or not."); // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_ErrorInfoFieldInputMethodTextChanged
 
 
