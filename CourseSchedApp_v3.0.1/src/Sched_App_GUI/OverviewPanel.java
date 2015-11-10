@@ -173,16 +173,16 @@ public class OverviewPanel extends JTabbedPane{
     }
     
 	
-	private String getHours()
+	public String getHours()
 	{
 		return CreditHourTextField.getText();
 	}
 	
-	private String getOffered()
+	public String getOffered()
 	{
 		return OfferedTextField.getText();
 	}
-	private JPanel getCourse()
+	public JPanel getCourse()
 	{
 		return overPanel;
 	}
